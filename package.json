@@ -1,0 +1,29 @@
+{
+  "name": "sessionid-windy",
+  "version": "1.0.0",
+  "description": "toolkit for crawler",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sessionid/sessionid-windy.git"
+  },
+  "keywords": [
+    "crawler"
+  ],
+  "author": "sessionid",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/sessionid/sessionid-windy/issues"
+  },
+  "homepage": "https://github.com/sessionid/sessionid-windy#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^8.2.0",
+    "nyc": "^15.1.0"
+  },
+  "dependencies": {}
+}
