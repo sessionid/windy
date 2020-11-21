@@ -23,3 +23,17 @@ changes:
 - new class `Sequence`
 - changes of test files for the update and new codes above
 - update comments(update and from chinese to english)
+
+## v1.0.2(2020-11-21)
+
+### helper.fs
+
+- rename `#rm()` to `#rmdir()`
+- `#combine()`
+    - check if `dest` file exists and truncate it before create readstream.
+    - fixed the bug that bind too much event listener on one event linstener.
+- new method `readline()`
+
+### adjust style of arguments of constructor
+
+from `(processor, thread = 1, retryLimit = 1, shuffle = false)` to `(processor, { thread = 1, retryLimit = 1, shuffle = false } = {})`

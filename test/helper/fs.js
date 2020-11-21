@@ -3,7 +3,7 @@
  * @author sessionid
  */
 
-const { promises: { mkdtemp, stat, unlink, rmdir, mkdir, access, readFile, writeFile } } = require('fs');
+const { promises: { mkdtemp, stat, unlink, mkdir, access, readFile, writeFile } } = require('fs');
 const { join, dirname } = require('path');
 const chai = require('chai');
 chai.should();
@@ -16,7 +16,7 @@ const {
     isExist,
     /* directory */
     sizeOf,
-    rm,
+    rmdir,
     copy,
     combine,
 } = require('../../lib/helper/fs');
@@ -48,7 +48,7 @@ describe('module::helper.fs', () => {
 
         afterEach(async () => {
             await unlink(file);
-            await rm(directory);
+            await rmdir(directory);
         });
         it('#isFile()', async () => {
             (await isFile(file)).should.eq(true);
@@ -84,7 +84,7 @@ describe('module::helper.fs', () => {
 
         afterEach(async () => {
             try {
-                await rm(directory, { recursive: true });
+                await rmdir(directory, { recursive: true });
             } catch {}
         });
 
@@ -93,8 +93,8 @@ describe('module::helper.fs', () => {
             await rmdir(directory, { recursive: true });
         });
 
-        it('#rm()', async () => {
-            await rm(directory);
+        it('#rmdir()', async () => {
+            await rmdir(directory);
             return access(directory).should.be.rejectedWith('ENOENT: no such file or directory');
         });
 

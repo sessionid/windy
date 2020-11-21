@@ -8,7 +8,7 @@ describe('class::Execuator', () => {
     const thread = 3;
     let execuator;
     beforeEach(() => {
-        execuator = new Execuator(processor, thread);
+        execuator = new Execuator(processor, {thread});
         execuator.addTask(taskList);
     })
     describe('init', () => {
@@ -84,7 +84,7 @@ describe('class::Execuator', () => {
             const err = new Error('test error');
             const processor = () => { throw err };
             let errList = [];
-            const execuator = new Execuator(processor, 1, 3);
+            const execuator = new Execuator(processor, { retryLimit: 3 });
             execuator.addTask([0]);
             execuator.on('finish', () => {
                 errList.should.deep.eq([err, err, err]);
@@ -99,7 +99,7 @@ describe('class::Execuator', () => {
         it('async execuator', (done) => {
             const processor = async v => v;
             const taskList = [0,1,2,3,4,6,7,8,11,23,43,124];
-            const execuator = new Execuator(processor, 3, 3);
+            const execuator = new Execuator(processor, { thread: 3, retryLimit: 3 });
             execuator.addTask(taskList);
             const resultList = [];
             execuator.on('finish', () => {
