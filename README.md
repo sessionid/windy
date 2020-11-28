@@ -40,11 +40,11 @@ toolkit for crawler
             - [ ] `toJSON(jsonp)`
             - [ ] `parse(jsonp)`
             - [ ] `stringify(data, callback)`
-        - [x]`shuffle(list, inplace = false)`
-        - [x]`randomFloat(ceil, floor = 0)`
-        - [x]`randInt(ceil, floor = 0)`
-        - [x]`randAround(list = [])`
-        - [x]`randNatural(ceil)`
+        - [x] `shuffle(list, inplace = false)`
+        - [x] `randomFloat(ceil, floor = 0)`
+        - [x] `randInt(ceil, floor = 0)`
+        - [x] `randAround(list = [])`
+        - [x] `randNatural(ceil)`
 - Module::List
     - [x] Class::InfiniteList
     - [x] Class::List

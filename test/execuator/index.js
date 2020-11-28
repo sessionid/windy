@@ -28,7 +28,7 @@ describe('class::Execuator', () => {
                 done();
             });
             execuator.on('data', (task) => {
-                resultList[task.tag - 1] = task.valueOf().data;
+                resultList[task.tag] = task.valueOf().data;
             });
             execuator.awake();
         });
@@ -37,23 +37,27 @@ describe('class::Execuator', () => {
             execuator.kill();
             execuator.awake();
             execuator._running.should.eq(false);
-            execuator._peonList.length.should.eq(0);
+            execuator.on('interrupt', () => {
+                execuator._peonList.length.should.eq(0);
+            })
         });
 
         it('#sleep()', () => {
             execuator.sleep();
+           execuator.on('sleep', () => {
             execuator._sleepPeonList.length.should.eq(thread);
+           })
         });
 
         it('#addTask()', (done) => {
             const resultList = [];
-            execuator.addTask([6, 7]).should.deep.eq([7, 8]);
+            execuator.addTask([6, 7]).should.deep.eq([6, 7]);
             execuator.on('finish', () => {
                 resultList.should.deep.eq([...taskList, 6, 7]);
                 done();
             });
             execuator.on('data', (task) => {
-                resultList[task.tag - 1] = task.valueOf().data;
+                resultList[task.tag] = task.valueOf().data;
             });
             execuator.awake();
         });
@@ -63,7 +67,7 @@ describe('class::Execuator', () => {
             const skipList = [];
             execuator.cancelTask([1,2]);
             execuator.on('finish', () => {
-                resultList.should.deep.eq(taskList.slice(2));
+                resultList.should.deep.eq(taskList.slice(0, 1).concat(taskList.slice(3)));
                 skipList.should.deep.eq([1, 2]);
                 done();
             });
@@ -108,7 +112,7 @@ describe('class::Execuator', () => {
                 done();
             });
             execuator.on('data', (task) => {
-                resultList[task.tag - 1] = task.valueOf().data;
+                resultList[task.tag] = task.valueOf().data;
             });
             execuator.awake();
         })

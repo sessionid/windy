@@ -37,3 +37,7 @@ changes:
 ### adjust style of arguments of constructor
 
 from `(processor, thread = 1, retryLimit = 1, shuffle = false)` to `(processor, { thread = 1, retryLimit = 1, shuffle = false } = {})`
+
+## v1.0.3(2020-11-28)
+
+fixed the bug of `class::Execuator` and update the test code.
